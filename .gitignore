@@ -1,0 +1,18 @@
+# Ignorar la carpeta build y dependencias de Gradle
+/build/
+.gradle/
+out/
+bin/
+
+# Archivos generados por el wrapper de Gradle
+gradlew
+gradlew.bat
+
+# Configuración de IDEs (Eclipse, IntelliJ, VSCode)
+*.iml
+.idea/
+.vscode/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db

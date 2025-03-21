@@ -3,13 +3,17 @@ package com.ruiz.prestamos.service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.ruiz.prestamos.config.ModelMapperConfig;
 import com.ruiz.prestamos.controller.PagoController;
+import com.ruiz.prestamos.exception.ErrorDTO;
+import com.ruiz.prestamos.exception.RequestException;
 import com.ruiz.prestamos.persistence.dto.PrestamoDTO;
 import com.ruiz.prestamos.persistence.entity.Pago;
 import com.ruiz.prestamos.persistence.entity.Prestamo;
@@ -36,7 +40,8 @@ public class PrestamoService {
     }
 
     public Prestamo get(int id) {
-        return prestamoRepository.findById(id).orElse(null);
+        return prestamoRepository.findById(id)
+        .orElseThrow(() -> new NoSuchElementException("No existe el prestamo con id: " + id));
     }
 
     @Transactional()
@@ -65,8 +70,8 @@ public class PrestamoService {
             }          
 
         } catch (Exception e) {
-            System.out.println("Error al guardar el prestamo"+e.getMessage());
-            return null;
+            ErrorDTO error = ErrorDTO.builder().code("3").status(HttpStatus.INTERNAL_SERVER_ERROR).detail(e.getMessage()).message("Error al guardar el prestamo").build();
+            throw new RequestException(error,e.getMessage());
         }
         return prestamoRepository.save(prestamo);
     }

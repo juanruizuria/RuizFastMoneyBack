@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.service.exception;
+package com.ruiz.prestamos.exception;
 
 import lombok.Getter;
 import lombok.Setter;

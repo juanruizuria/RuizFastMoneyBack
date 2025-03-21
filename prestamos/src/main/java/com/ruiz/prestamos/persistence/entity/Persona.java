@@ -17,11 +17,11 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "personas")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Usuario {
+public class Persona {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

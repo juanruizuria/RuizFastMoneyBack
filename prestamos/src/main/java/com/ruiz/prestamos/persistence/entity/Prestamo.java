@@ -7,8 +7,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +29,8 @@ import com.ruiz.prestamos.persistence.enums.EstadoPrestamo;
 @Table(name = "prestamos")
 @Getter
 @Setter
-public class Prestamo {
+@EntityListeners(AuditingEntityListener.class)
+public class Prestamo extends Auditable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,10 +45,10 @@ public class Prestamo {
     @Column(nullable = false)
     private Integer meses;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_inicio",  nullable = false)
     private LocalDate fechaInicio;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_limite", nullable = false)
     private LocalDate fechaLimite;
 
     @Enumerated(EnumType.STRING)
@@ -56,11 +60,11 @@ public class Prestamo {
 
     @OneToOne
     @JoinColumn(name = "id_prestatario", referencedColumnName = "id", insertable = false, updatable = false)
-    private Usuario prestatario;
+    private Persona prestatario;
 
     @OneToOne
     @JoinColumn(name = "id_prestador", referencedColumnName = "id", insertable = false, updatable = false)
-    private Usuario prestador;
+    private Persona prestador;
 
     @OneToMany(mappedBy = "prestamo")
     private List<Pago> pagos;

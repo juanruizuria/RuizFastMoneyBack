@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.service.exception;
+package com.ruiz.prestamos.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

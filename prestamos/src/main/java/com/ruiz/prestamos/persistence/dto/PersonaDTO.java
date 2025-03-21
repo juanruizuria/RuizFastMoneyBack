@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UsuarioDTO {
+public class PersonaDTO {
     private Integer id;
     private String nombre;
     private String documento;

@@ -1,7 +1,7 @@
 package com.ruiz.prestamos.controller;
 
-
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,21 +28,33 @@ public class PrestamoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PrestamoDTO>> getAll() {
-        List<Prestamo> prestamos = this.prestamoService.getAll();
-        if (prestamos == null || prestamos.isEmpty()) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<ApiResponse<List<PrestamoDTO>>> getAll() {
+        try {
+            List<Prestamo> prestamos = this.prestamoService.getAll();
+            return ResponseEntity.ok(
+                    ApiResponse.success("usuarios encontrados", this.prestamoService.convertirListaADTO(prestamos)));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.warning("No existen prestamos", null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.error("Error interno del servidor: " + e.getMessage()));
         }
-        return ResponseEntity.ok(this.prestamoService.convertirListaADTO(prestamos));
+
     }
 
     @GetMapping("/{idPrestamo}")
-    public ResponseEntity<PrestamoDTO> get(@PathVariable int idPrestamo) {
-        Prestamo prestamo = this.prestamoService.get(idPrestamo);
-        if (prestamo == null) {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<ApiResponse<PrestamoDTO>> get(@PathVariable int idPrestamo) {
+        try {
+            Prestamo prestamo = this.prestamoService.get(idPrestamo);
+            return ResponseEntity
+                    .ok(ApiResponse.success("Usuario encontrado", this.prestamoService.convertirADTO(prestamo)));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ApiResponse.warning(e.getMessage(), null));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.error("Error interno del servidor: " + e.getMessage()));
         }
-        return ResponseEntity.ok(this.prestamoService.convertirADTO(prestamo));
     }
 
     @PostMapping

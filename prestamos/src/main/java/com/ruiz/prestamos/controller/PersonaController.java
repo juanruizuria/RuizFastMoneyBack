@@ -38,9 +38,7 @@ public class PersonaController {
 
     @PostMapping
     public ResponseEntity<ApiResponse<PersonaDTO>> add(@RequestBody Persona inputpersona) {
-           
             return ResponseEntity.ok(this.personaService.save(inputpersona));
-        
     }
 
     @PutMapping

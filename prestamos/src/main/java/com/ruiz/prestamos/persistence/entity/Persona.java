@@ -1,11 +1,13 @@
 package com.ruiz.prestamos.persistence.entity;
 
-import java.util.Date;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.ruiz.prestamos.persistence.audit.Auditable;
 import com.ruiz.prestamos.persistence.enums.TipoUsuario;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -21,7 +23,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Persona {
+@EntityListeners(AuditingEntityListener.class)
+public class Persona extends Auditable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

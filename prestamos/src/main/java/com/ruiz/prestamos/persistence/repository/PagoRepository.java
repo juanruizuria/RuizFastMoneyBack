@@ -14,5 +14,7 @@ public interface PagoRepository extends ListCrudRepository<Pago, Integer> {
     List<Pago> findByPrestamoIdAndMontoGreaterThan(Integer prestamoId, BigDecimal monto);
     // obtener el último pago realizado por un préstamo
     Optional<Pago> findFirstByPrestamoIdOrderByFechaPagoDesc(Integer prestamoId);
+    // obtener el último pago realizado por fecha de vencimiento (generada automaticamente)
+    Optional<Pago> findFirstByPrestamoIdOrderByFechaVencimientoDesc(Integer prestamoId);
 
 }

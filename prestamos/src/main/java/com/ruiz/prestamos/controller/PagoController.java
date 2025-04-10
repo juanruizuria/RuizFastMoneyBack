@@ -2,8 +2,8 @@ package com.ruiz.prestamos.controller;
 
 import java.util.List;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,47 +27,36 @@ public class PagoController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PagoDTO>> getAll() {
-        List<Pago> pagos = this.pagoService.getAll();
-        if (pagos == null || pagos.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(this.pagoService.convertirListaADTO(pagos));
+    public ResponseEntity<ApiResponse<List<PagoDTO>>> getAll() {
+        return ResponseEntity.ok(this.pagoService.getAll());
+    }
+
+    @GetMapping("/prestamo/{idPrestamo}")
+    public ResponseEntity<ApiResponse<List<PagoDTO>>> getByPrestmo(@PathVariable int idPrestamo) {
+        return ResponseEntity.ok(this.pagoService.getByPrestamo(idPrestamo));
     }
 
     @GetMapping("/{idPago}")
-    public ResponseEntity<PagoDTO> get(@PathVariable int idPago) {
-        Pago pago = this.pagoService.get(idPago);
-        if (pago == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(this.pagoService.convertirADTO(pago));
+    public ResponseEntity<ApiResponse<PagoDTO>> get(@PathVariable int idPago) {
+        return ResponseEntity.ok(this.pagoService.get(idPago));
     }
 
-    @PostMapping
-    public ResponseEntity<PagoDTO> add(@RequestBody Pago inputPago) {
-        if (this.pagoService.exist(inputPago.getId())) {
-            return ResponseEntity.badRequest().build();
-        }
-        Pago Pago = this.pagoService.save(inputPago);
-        return ResponseEntity.ok(this.pagoService.convertirADTO(Pago));
-    }
-
+     @PostMapping
+    public ResponseEntity<ApiResponse<PagoDTO>> add(@RequestBody PagoDTO inputPago) {
+        return ResponseEntity.ok(this.pagoService.save(inputPago));
+    } 
+ 
     @PutMapping
-    public ResponseEntity<PagoDTO> update(@RequestBody Pago inputPago) {
-        if (!this.pagoService.exist(inputPago.getId())) {
-            return ResponseEntity.notFound().build();
-        }
-        Pago Pago = this.pagoService.save(inputPago);
-        return ResponseEntity.ok(this.pagoService.convertirADTO(Pago));
+    public ResponseEntity<ApiResponse<PagoDTO>> update(@RequestBody PagoDTO inputPago) {
+        return ResponseEntity.ok(this.pagoService.save(inputPago));
     }
+        
 
     @DeleteMapping("/{idPago}")
-    public ResponseEntity<String> delete(@PathVariable int idPago) {
-        return (this.pagoService.delete(idPago))
-                ? ResponseEntity.ok("Recurso eliminado correctamente")
-                : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Recurso con ID " + idPago + " no encontrado");
+    public ResponseEntity<ApiResponse<PagoDTO>> delete(@PathVariable int idPago) {
+        return ResponseEntity.ok(this.pagoService.delete(idPago));
     }
+
 
 
 }

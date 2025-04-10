@@ -18,11 +18,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
+import com.ruiz.prestamos.persistence.audit.Auditable;
 import com.ruiz.prestamos.persistence.enums.EstadoPrestamo;
 
 @Entity
@@ -57,13 +57,13 @@ public class Prestamo extends Auditable {
 
     @Column(precision = 5, scale = 2)
     private BigDecimal penalizacion = BigDecimal.ZERO;
-
-    @OneToOne
-    @JoinColumn(name = "id_prestatario", referencedColumnName = "id", insertable = false, updatable = false)
+    
+    @ManyToOne
+    @JoinColumn(name = "id_prestatario", referencedColumnName = "id", nullable = false)
     private Persona prestatario;
-
-    @OneToOne
-    @JoinColumn(name = "id_prestador", referencedColumnName = "id", insertable = false, updatable = false)
+    
+    @ManyToOne
+    @JoinColumn(name = "id_prestador", referencedColumnName = "id", nullable = false)
     private Persona prestador;
 
     @OneToMany(mappedBy = "prestamo")

@@ -6,5 +6,6 @@ import com.ruiz.prestamos.persistence.entity.Prestamo;
 
 public interface PrestamoRepository extends ListCrudRepository<Prestamo,Integer>{
 
+    
 }
 

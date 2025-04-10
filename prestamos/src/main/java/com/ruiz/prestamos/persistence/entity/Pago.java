@@ -1,5 +1,6 @@
 package com.ruiz.prestamos.persistence.entity;
 
+import com.ruiz.prestamos.persistence.audit.Auditable;
 import com.ruiz.prestamos.persistence.enums.EstadoPago;
 import lombok.Getter;
 import lombok.Setter;
@@ -45,6 +46,6 @@ public class Pago extends Auditable {
     private EstadoPago estado = EstadoPago.PENDIENTE;
 
     @ManyToOne
-    @JoinColumn(name = "id_prestamo", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "id_prestamo", referencedColumnName = "id", nullable = false)
     private Prestamo prestamo;
 }

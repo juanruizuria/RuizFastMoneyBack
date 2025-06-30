@@ -6,11 +6,17 @@ WORKDIR /app
 # Copia TODO el contenido de la carpeta 'prestamos' dentro del contenedor
 COPY prestamos /app
 
+# Imprimir contenido de /app para depuración
+RUN echo "Contenidos de /app:" && ls -al /app
+
+# Buscar gradlew
+RUN echo "Buscando gradlew..." && find /app -name "gradlew"
+
 # Da permisos al wrapper
-RUN chmod +x /app/gradlew
+RUN chmod +x ./gradlew
 
 # Ejecuta la build desde /app
-RUN /app/gradlew clean build --no-daemon
+RUN ./gradlew clean build --no-daemon
 
 # Etapa 2: ejecución
 FROM eclipse-temurin:21-jdk

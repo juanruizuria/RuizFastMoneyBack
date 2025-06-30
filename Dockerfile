@@ -7,7 +7,7 @@ WORKDIR /app
 COPY prestamos /app
 
 # Da permisos al wrapper
-RUN chmod +x /app/gradlew
+RUN chmod +x ./app/gradlew
 
 # Ejecuta la build desde /app
 RUN ./gradlew clean build --no-daemon

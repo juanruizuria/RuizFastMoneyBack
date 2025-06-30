@@ -1,26 +1,27 @@
-# Etapa 1: Build con Gradle
+# Etapa 1: Compilar usando Gradle
 FROM gradle:8.7-jdk21 AS builder
 
-# Copiar solo lo necesario
-COPY prestamos /app
+# Crea el directorio y entra a la subcarpeta del proyecto
 WORKDIR /app
 
+# Copia solo los archivos necesarios
+COPY prestamos/ ./prestamos/
 
+# Da permisos al wrapper
+RUN chmod +x ./prestamos/gradlew
 
-# Construye el proyecto
+# Ejecuta la build desde la subcarpeta
+WORKDIR /app/prestamos
 RUN ./gradlew clean build --no-daemon
 
-# Etapa 2: Imagen de ejecución (runtime)
-FROM eclipse-temurin:21-jre
+# Etapa 2: Imagen liviana solo con el JAR
+FROM eclipse-temurin:21-jdk
 
-# Crear directorio para la app
 WORKDIR /app
 
-# Copiar el JAR generado desde el builder
-COPY --from=builder /app/build/libs/*.jar app.jar
+# Copiar el JAR generado desde la etapa anterior
+COPY --from=builder /app/prestamos/build/libs/*.jar app.jar
 
-# Puerto de la aplicación
 EXPOSE 8080
 
-# Comando de arranque
 ENTRYPOINT ["java", "-jar", "app.jar"]

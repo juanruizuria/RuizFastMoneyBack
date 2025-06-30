@@ -7,6 +7,8 @@ WORKDIR /app/prestamos
 # Copia todo el contenido de la carpeta prestamos/ en tu PC
 COPY prestamos/ ./
 
+RUN ls -l && ls -l gradlew
+
 # Da permisos al gradlew
 RUN chmod +x gradlew
 

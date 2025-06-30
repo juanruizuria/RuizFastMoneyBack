@@ -7,10 +7,10 @@ WORKDIR /app
 COPY prestamos /app
 
 # Da permisos al wrapper
-RUN chmod +x ./app/gradlew
+RUN chmod +x /app/gradlew
 
 # Ejecuta la build desde /app
-RUN ./gradlew clean build --no-daemon
+RUN /app/gradlew clean build --no-daemon
 
 # Etapa 2: ejecución
 FROM eclipse-temurin:21-jdk

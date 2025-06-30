@@ -4,9 +4,6 @@ out/
 bin/
 build/
 
-# Archivos generados por el wrapper de Gradle
-gradlew
-gradlew.bat
 
 # IDEs (Eclipse, IntelliJ, VSCode)
 *.iml

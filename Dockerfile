@@ -1,25 +1,23 @@
-# Etapa 1: Compilar usando Gradle
 FROM gradle:8.7-jdk21 AS builder
 
-# Crea el directorio y entra a la subcarpeta del proyecto
+# Crear carpeta de trabajo
 WORKDIR /app
 
-# Copia solo los archivos necesarios
-COPY prestamos/ ./prestamos/
+# Copiar todo el contenido del proyecto dentro de la subcarpeta prestamos
+COPY prestamos /app/prestamos
 
-# Da permisos al wrapper
-RUN chmod +x ./prestamos/gradlew
-
-# Ejecuta la build desde la subcarpeta
+# Dar permisos al wrapper
 WORKDIR /app/prestamos
+RUN chmod +x gradlew
+
+# Compilar
 RUN ./gradlew clean build --no-daemon
 
-# Etapa 2: Imagen liviana solo con el JAR
+# Segunda imagen con solo el JAR
 FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-# Copiar el JAR generado desde la etapa anterior
 COPY --from=builder /app/prestamos/build/libs/*.jar app.jar
 
 EXPOSE 8080

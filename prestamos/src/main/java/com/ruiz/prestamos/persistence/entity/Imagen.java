@@ -2,12 +2,7 @@ package com.ruiz.prestamos.persistence.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-
 import com.ruiz.prestamos.persistence.enums.TipoImagen;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

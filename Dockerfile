@@ -5,7 +5,9 @@ FROM gradle:8.7-jdk21 AS builder
 COPY prestamos /app
 WORKDIR /app
 
-# Ejecutar el build
+
+
+# Construye el proyecto
 RUN ./gradlew clean build --no-daemon
 
 # Etapa 2: Imagen de ejecución (runtime)

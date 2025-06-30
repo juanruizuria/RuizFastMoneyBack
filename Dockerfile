@@ -1,18 +1,15 @@
-# Etapa 1: build
+# Etapa 1: compilación
 FROM gradle:8.7-jdk21 AS builder
 
-# Ruta donde irá tu app
-WORKDIR /app/prestamos
+WORKDIR /app
 
-# Copia todo el contenido de la carpeta prestamos/ en tu PC
-COPY prestamos/ ./
+# Copia TODO el contenido de la carpeta 'prestamos' dentro del contenedor
+COPY prestamos /app
 
-RUN ls -l && ls -l gradlew
+# Da permisos al wrapper
+RUN chmod +x /app/gradlew
 
-# Da permisos al gradlew
-RUN chmod +x gradlew
-
-# Ejecuta la build
+# Ejecuta la build desde /app
 RUN ./gradlew clean build --no-daemon
 
 # Etapa 2: ejecución
@@ -20,8 +17,7 @@ FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
-# Copia el JAR generado desde el build
-COPY --from=builder /app/prestamos/build/libs/*.jar app.jar
+COPY --from=builder /app/build/libs/*.jar app.jar
 
 EXPOSE 8080
 

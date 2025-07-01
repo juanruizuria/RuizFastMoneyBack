@@ -32,8 +32,8 @@ public class PersonaController {
     }
 
     @GetMapping("/{idpersona}")
-    public ResponseEntity<ApiResponse<PersonaDTO>> get(@PathVariable int idpersona) {
-        return ResponseEntity.ok(this.personaService.get(idpersona));
+    public ResponseEntity<ApiResponse<PersonaDTO>> get(@PathVariable("idpersona") int id){
+        return ResponseEntity.ok(this.personaService.get(id));
     }
 
     @PostMapping
@@ -48,8 +48,8 @@ public class PersonaController {
 
    
     @DeleteMapping("/{idpersona}")
-    public ResponseEntity<ApiResponse<PersonaDTO>> delete(@PathVariable int idpersona) {
-        return ResponseEntity.ok(this.personaService.delete(idpersona));
+    public ResponseEntity<ApiResponse<PersonaDTO>> delete(@PathVariable("idpersona") int id){
+        return ResponseEntity.ok(this.personaService.delete(id));
 
     }
 

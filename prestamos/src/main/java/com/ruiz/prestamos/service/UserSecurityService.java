@@ -1,6 +1,7 @@
 package com.ruiz.prestamos.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -9,17 +10,21 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ruiz.prestamos.persistence.entity.Usuario;
+import com.ruiz.prestamos.persistence.entity.UsuarioRol;
 import com.ruiz.prestamos.persistence.repository.UserRepository;
 
 @Service
 public class UserSecurityService implements UserDetailsService {
     private final UserRepository userRepository;
+     private final PasswordEncoder passwordEncoder;
 
-    public UserSecurityService(UserRepository userRepository) {
+    public UserSecurityService(UserRepository userRepository,  PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // Implementación del método loadUserByUsername para cargar el usuario por nombre de usuario
@@ -39,6 +44,24 @@ public class UserSecurityService implements UserDetailsService {
                 .accountLocked(userEntity.getBloqueada())
                 .disabled(userEntity.getDeshabilitada())
                 .build();
+    }
+
+    public Usuario createUser(String username, String rawPassword) {
+        if (userRepository.findByNombre(username).isPresent()) {
+            throw new IllegalArgumentException("El usuario ya existe");
+        }
+
+        Usuario newUser = new Usuario();
+        newUser.setNombre(username);
+        newUser.setContrasenia(passwordEncoder.encode(rawPassword));
+        newUser.setBloqueada(false);
+        newUser.setDeshabilitada(false);
+
+        UsuarioRol defaultRole = new UsuarioRol();
+        defaultRole.setRol("USER");
+        newUser.setRoles(Collections.singletonList(defaultRole));
+
+        return userRepository.save(newUser);
     }
 
     private String[] getAuthorities(String role) {

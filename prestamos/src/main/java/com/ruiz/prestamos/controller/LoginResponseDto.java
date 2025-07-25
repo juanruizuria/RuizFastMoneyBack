@@ -6,11 +6,11 @@ import lombok.Data;
 
 @Data
 public class LoginResponseDto {
-    private UserDetails username;
+    private UserDetails user;
     private String token;
 
-    public LoginResponseDto(UserDetails username, String token) {
-        this.username = username;
+    public LoginResponseDto(UserDetails user, String token) {
+        this.user = user;
         this.token = token;
     }
 }

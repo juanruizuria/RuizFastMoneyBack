@@ -2,6 +2,7 @@ package com.ruiz.prestamos.config;
 
 import java.io.IOException;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +23,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private final UserDetailsService userDetailsService; //usara UserSecurityService pq implementa
 
 
-    public JwtFilter(JWTUtil jwtUtil, UserDetailsService userDetailsService) {
+    public JwtFilter(JWTUtil jwtUtil, @Lazy UserDetailsService userDetailsService) {
         this.jwtUtil = jwtUtil;
         this.userDetailsService = userDetailsService;
     }
@@ -56,7 +57,7 @@ public class JwtFilter extends OncePerRequestFilter {
         // 4. Cargar el usuario en el contexto de seguridad
         
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                user.getUsername(), user.getPassword(), user.getAuthorities());
+                user, user.getPassword(), user.getAuthorities());
         authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request)); //cargamos los detalles de la autenticacion
         SecurityContextHolder.getContext().setAuthentication(authToken); //cargamos la autenticacion en el contexto
         System.out.println(authToken);

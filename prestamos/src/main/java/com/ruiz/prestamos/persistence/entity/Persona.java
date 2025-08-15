@@ -1,5 +1,7 @@
 package com.ruiz.prestamos.persistence.entity;
 
+import java.io.Serializable;
+
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.ruiz.prestamos.persistence.audit.Auditable;
@@ -24,7 +26,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Persona extends Auditable{
+public class Persona extends Auditable implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,8 +39,8 @@ public class Persona extends Auditable{
     @Column(nullable = false, length = 100)
     private String nombre;
 
-    @Column(name = "documento_identidad", unique = true, nullable = false, length = 20)
-    private String documentoIdentidad;
+    @Column(name = "documento", unique = true, nullable = false, length = 20)
+    private String documento;
 
     @Column(length = 100)
     private String email;

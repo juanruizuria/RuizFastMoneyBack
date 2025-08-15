@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "auditUser")
 public class PrestamosApplication {
 
 	public static void main(String[] args) {

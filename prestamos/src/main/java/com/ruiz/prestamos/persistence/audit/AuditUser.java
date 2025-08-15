@@ -17,7 +17,7 @@ public class AuditUser implements AuditorAware<String>{
         if( authentication == null || !authentication.isAuthenticated() ){
             return Optional.empty();
         }
-        String username = authentication.getPrincipal().toString();
+        String username = authentication.getPrincipal().toString(); //principal es el nombre de usuario
 
         return Optional.of(username);
 

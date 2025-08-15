@@ -16,8 +16,8 @@ public class JWTUtil {
     public String generarToken(String username) {
         Calendar expira = Calendar.getInstance();
         expira.setTime(new Date());
-        //expira.add(Calendar.HOUR_OF_DAY, 10);
-        expira.add(Calendar.MINUTE, 10);
+        expira.add(Calendar.HOUR_OF_DAY, 10);
+        //expira.add(Calendar.MINUTE, 10);
         return JWT.create()
                 .withSubject(username)
                 .withIssuedAt(new Date())

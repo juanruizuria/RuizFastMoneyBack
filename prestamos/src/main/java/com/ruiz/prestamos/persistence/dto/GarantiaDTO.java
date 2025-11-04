@@ -12,12 +12,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PagoDTO implements Serializable{
+public class GarantiaDTO implements Serializable {
     private Integer id;
-    private LocalDate fechaVencimiento;
-    private BigDecimal monto;
-    private LocalDate fechaPago;
-    private String estado;
     private Integer idPrestamo;
-    private List<GarantiaDTO> garantias;
+    private Integer idPago;
+    private String descripcion;
+    private String estado;
+    private String tipo;
+    private BigDecimal valorEstimado;
+    private LocalDate fechaRegistro;
+    private List<DocumentoDTO> documentos;
+    
 }

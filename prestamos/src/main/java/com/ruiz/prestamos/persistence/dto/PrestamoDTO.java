@@ -24,4 +24,7 @@ public class PrestamoDTO implements Serializable {
     private String estado;
     private BigDecimal penalizacion;
     private List<PagoDTO> pagos;
+    private List<GarantiaDTO> garantias;
+
+    
 }

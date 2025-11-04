@@ -15,7 +15,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
     private final JwtFilter jwtFilter;
-    
+
     public SecurityConfig(JwtFilter jwtFilter) {
         this.jwtFilter = jwtFilter;
     }
@@ -29,9 +29,25 @@ public class SecurityConfig {
                 //.httpBasic(Customizer.withDefaults()) // habilitar autenticación básica
                 .authorizeHttpRequests(authz -> authz
                         .requestMatchers(HttpMethod.POST, "/api/auth/*").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/persona/**").hasAnyRole("ADMIN","CUSTOMER")
+                        .requestMatchers(HttpMethod.GET, "/api/imagen/**").permitAll() 
+                        .requestMatchers(HttpMethod.POST, "/api/imagen/**").authenticated()
+                        //.requestMatchers(HttpMethod.GET, "/api/persona/**").hasAnyRole("ADMIN","CUSTOMER")
+                        .requestMatchers(HttpMethod.GET, "/api/persona/**").authenticated()
                         .requestMatchers(HttpMethod.POST, "/api/persona/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/persona/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/permisos/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/permisos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/permisos/**").hasRole("ADMIN")
+
+                        .requestMatchers(HttpMethod.GET, "/api/rol/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/rol/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/api/rol/**").hasRole("ADMIN")
+
+                        
+
+
+                        
                         /*
                          * .requestMatchers("/prestamos/**").hasAnyRole("ADMIN", "USER")
                          * .requestMatchers("/swagger-ui/**").permitAll()
@@ -47,11 +63,10 @@ public class SecurityConfig {
     public AuthenticationManager authManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
-    
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
 }
-

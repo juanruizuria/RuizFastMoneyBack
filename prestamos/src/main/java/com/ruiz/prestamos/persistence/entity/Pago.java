@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -19,6 +20,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -48,4 +50,7 @@ public class Pago extends Auditable {
     @ManyToOne
     @JoinColumn(name = "id_prestamo", referencedColumnName = "id", nullable = false)
     private Prestamo prestamo;
+
+    @OneToMany(mappedBy = "pago")
+    private List<Garantia> garantias;
 }

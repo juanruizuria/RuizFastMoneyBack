@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.ruiz.prestamos.persistence.entity.Usuario;
 
 public interface UserRepository extends CrudRepository<Usuario, Integer> {
-    Optional<Usuario> findByNombre(String nombre);
+    Optional<Usuario> findByUsuario(String usuario);
     Usuario findByCorreo(String correo);
     Usuario findByNombreAndContrasenia(String nombre, String contrasenia);
 }

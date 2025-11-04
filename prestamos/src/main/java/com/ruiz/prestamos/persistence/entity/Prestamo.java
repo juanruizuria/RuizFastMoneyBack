@@ -20,6 +20,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 
 import com.ruiz.prestamos.persistence.audit.Auditable;
@@ -67,6 +68,7 @@ public class Prestamo extends Auditable {
     private Persona prestador;
 
     @OneToMany(mappedBy = "prestamo")
+    @OrderBy("fechaVencimiento ASC") 
     private List<Pago> pagos;
 
     @OneToMany(mappedBy = "prestamo")

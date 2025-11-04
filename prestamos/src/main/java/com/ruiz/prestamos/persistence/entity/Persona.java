@@ -26,8 +26,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Persona extends Auditable implements Serializable{
-    
+public class Persona extends Auditable implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -50,5 +50,6 @@ public class Persona extends Auditable implements Serializable{
 
     @Column(length = 150)
     private String direccion;
-}
 
+    private Boolean activo = true;
+}

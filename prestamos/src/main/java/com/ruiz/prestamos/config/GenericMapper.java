@@ -7,11 +7,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class GenericMapper {
-     @Autowired
+    @Autowired
     private ModelMapper modelMapper;
 
+  
     public <D, E> D convertirADTO(E entidad, Class<D> dtoClass) {
         return modelMapper.map(entidad, dtoClass);
     }

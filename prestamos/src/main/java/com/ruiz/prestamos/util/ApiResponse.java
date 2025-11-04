@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.controller;
+package com.ruiz.prestamos.util;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -29,5 +29,10 @@ public class ApiResponse<T> {
     public static <T> ApiResponse<T> error(String message) {
         return new ApiResponse<>(500, "ERROR", message, null);
     }
+    
+    public boolean isSuccess() {
+    return "SUCCESS".equalsIgnoreCase(type);
+}
+
 
 }

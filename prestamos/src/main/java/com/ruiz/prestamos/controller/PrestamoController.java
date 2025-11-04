@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.ruiz.prestamos.persistence.dto.PrestamoDTO;
 import com.ruiz.prestamos.service.PrestamoService;
+import com.ruiz.prestamos.util.ApiResponse;
 
 @RestController
 @RequestMapping("/api/prestamo")
@@ -28,6 +29,7 @@ public class PrestamoController {
         return ResponseEntity.ok(this.prestamoService.getAll());
     }
 
+   
     @GetMapping("/{idPrestamo}")
     public ResponseEntity<ApiResponse<PrestamoDTO>> get(@PathVariable int idPrestamo) {
         return ResponseEntity.ok(this.prestamoService.get(idPrestamo));
@@ -40,14 +42,12 @@ public class PrestamoController {
 
     @PutMapping
     public ResponseEntity<ApiResponse<PrestamoDTO>> update(@RequestBody PrestamoDTO inPrestamo) {
-        return ResponseEntity.ok(this.prestamoService.save(inPrestamo));
+        return ResponseEntity.ok(this.prestamoService.update(inPrestamo));
     }
 
-    @DeleteMapping("/{idPrestamo}")
-    public ResponseEntity<ApiResponse<Boolean>> delete(@PathVariable int idPrestamo) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse<Boolean>> delete(@PathVariable("id") int idPrestamo) {
         return ResponseEntity.ok(this.prestamoService.delete(idPrestamo));
     }
-
-   
 
 }

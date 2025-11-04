@@ -11,7 +11,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 @MappedSuperclass
 public class Auditable {
-    @Column(name = "fecha_creacion")
+    @Column(name = "fecha_creacion", updatable = false)
     @CreatedDate
     private LocalDateTime fechaCreacion;
 
@@ -19,7 +19,7 @@ public class Auditable {
     @LastModifiedDate
     private LocalDateTime fechaModificacion;
 
-    @Column(name = "creado_por")
+    @Column(name = "creado_por", updatable = false)
     @CreatedBy
     private String createdBy;
 

@@ -1,14 +1,15 @@
 package com.ruiz.prestamos.service;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 
 import com.ruiz.prestamos.config.GenericMapper;
-import com.ruiz.prestamos.controller.ApiResponse;
 import com.ruiz.prestamos.persistence.dto.PersonaDTO;
 import com.ruiz.prestamos.persistence.entity.Persona;
 import com.ruiz.prestamos.persistence.repository.PersonaRepository;
+import com.ruiz.prestamos.util.ApiResponse;
 
 @Service
 public class PersonaService {
@@ -20,9 +21,20 @@ public class PersonaService {
         this.mapper = mapper;
     }
 
+    public ApiResponse<List<PersonaDTO>> listarPersonas(String tipo,boolean activo, Date inicio, Date fin) {
+
+         List<Persona> personas =  personaRepository.listarFiltroDinamico(tipo, activo, inicio, fin);
+            if(personas.isEmpty()) {
+                ApiResponse.warning("No existe regristros ", null);
+                //throw new NoSuchElementException("No existen personas");
+            }
+            return ApiResponse.success("personas encontradas", mapper.convertirListaADTO(personas, PersonaDTO.class));
+    }
+
     public ApiResponse<List<PersonaDTO>> getAll() {
         try {
-            List<Persona> personas = personaRepository.findAll();
+            //List<Persona> personas = personaRepository.findAll();
+            List<Persona> personas = personaRepository.findByActivoTrueOrderByNombreAsc();
             if(personas.isEmpty()) {
                 throw new NoSuchElementException("No existen personas");
             }
@@ -78,8 +90,10 @@ public class PersonaService {
         try {
             Persona persona = personaRepository.findById(id)
                     .orElseThrow(() -> new NoSuchElementException("No existe persona con id: " + id));
-            personaRepository.deleteById(id);
-            return ApiResponse.success("persona eliminada", mapper.convertirADTO(persona, PersonaDTO.class));
+            //personaRepository.deleteById(id);
+            persona.setActivo(false);
+            personaRepository.save(persona); 
+            return ApiResponse.success("Persona desactivada", mapper.convertirADTO(persona, PersonaDTO.class));
 
         } catch (NoSuchElementException e) {
             return ApiResponse.warning(e.getMessage(), null);

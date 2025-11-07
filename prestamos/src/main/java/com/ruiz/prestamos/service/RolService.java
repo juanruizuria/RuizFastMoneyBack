@@ -31,7 +31,6 @@ public class RolService {
 
     }
 
-    @Transactional(readOnly = true)
     public ApiResponse<List<RolDTO>> listarRoles() {
         try {
             List<Rol> roles = rolRepository.findAll();

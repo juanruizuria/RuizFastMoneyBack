@@ -29,6 +29,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.2'
 	implementation 'com.auth0:java-jwt:4.4.0'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
+	implementation 'me.paulschwarz:spring-dotenv:4.0.0'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -38,6 +40,9 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools' 
 }
 
+test {
+    useJUnitPlatform()
+}
 tasks.named('test') {
 	useJUnitPlatform()
 }

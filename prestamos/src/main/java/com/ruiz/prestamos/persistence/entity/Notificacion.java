@@ -1,16 +1,12 @@
 package com.ruiz.prestamos.persistence.entity;
 
 
+
 import lombok.Getter;
 import lombok.Setter;
 import java.time.LocalDateTime;
-
-import com.ruiz.prestamos.persistence.enums.EstadoNotificacion;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,9 +36,8 @@ public class Notificacion {
     @Column(name = "fecha_envio", nullable = false, updatable = false)
     private LocalDateTime fechaEnvio = LocalDateTime.now();
 
-    @Enumerated(EnumType.STRING)
-    @Column(length = 20, nullable = false)
-    private EstadoNotificacion estado = EstadoNotificacion.ENVIADO;
+    @Column(length = 255)
+    private String estado;
 
     @ManyToOne
     @JoinColumn(name = "id_prestamo", referencedColumnName = "id", insertable = false, updatable = false)

@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.persistence.entity;
+package com.ruiz.prestamos.security.persistence.entity;
 
 import java.util.Collection;
 import java.util.HashSet;

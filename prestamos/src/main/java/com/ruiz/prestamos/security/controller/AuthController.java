@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.controller;
+package com.ruiz.prestamos.security.controller;
 
 import java.util.List;
 
@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ruiz.prestamos.config.JWTUtil;
-import com.ruiz.prestamos.persistence.dto.LoginDTO;
-import com.ruiz.prestamos.persistence.dto.LoginResponseDTO;
+
 import com.ruiz.prestamos.persistence.dto.MenuDTO;
+import com.ruiz.prestamos.security.auth.JWTUtil;
+import com.ruiz.prestamos.security.persistence.dto.LoginDTO;
+import com.ruiz.prestamos.security.persistence.dto.LoginResponseDTO;
+import com.ruiz.prestamos.security.service.UserSecurityService;
 import com.ruiz.prestamos.service.MenuService;
-import com.ruiz.prestamos.service.UserSecurityService;
 
 @RestController
 @RequestMapping("/api/auth")

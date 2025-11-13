@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.service;
+package com.ruiz.prestamos.security.service;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -8,9 +8,9 @@ import java.util.NoSuchElementException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ruiz.prestamos.persistence.dto.PermisoDTO;
-import com.ruiz.prestamos.persistence.entity.Permiso;
-import com.ruiz.prestamos.persistence.repository.PermisoRepository;
+import com.ruiz.prestamos.security.persistence.dto.PermisoDTO;
+import com.ruiz.prestamos.security.persistence.entity.Permiso;
+import com.ruiz.prestamos.security.persistence.repository.PermisoRepository;
 import com.ruiz.prestamos.util.ApiResponse;
 
 @Service

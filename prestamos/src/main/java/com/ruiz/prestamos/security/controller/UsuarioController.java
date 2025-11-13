@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.controller;
+package com.ruiz.prestamos.security.controller;
 
 import java.util.List;
 
@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.ruiz.prestamos.persistence.dto.UsuarioDTO;
-import com.ruiz.prestamos.persistence.entity.Rol;
-import com.ruiz.prestamos.persistence.entity.Usuario;
-import com.ruiz.prestamos.service.UserSecurityService;
+
+import com.ruiz.prestamos.security.persistence.dto.UsuarioDTO;
+import com.ruiz.prestamos.security.persistence.entity.Usuario;
+import com.ruiz.prestamos.security.service.UserSecurityService;
 import com.ruiz.prestamos.util.ApiResponse;
 
 @RestController

@@ -7,7 +7,6 @@ import com.ruiz.prestamos.config.GenericMapper;
 import com.ruiz.prestamos.persistence.dto.DocumentoDTO;
 import com.ruiz.prestamos.persistence.entity.Garantia;
 import com.ruiz.prestamos.persistence.entity.Documento;
-import com.ruiz.prestamos.persistence.repository.GarantiaRepository;
 import com.ruiz.prestamos.persistence.repository.DocumentoRepository;
 import com.ruiz.prestamos.util.ApiResponse;
 
@@ -25,17 +24,14 @@ import java.util.UUID;
 @Service
 public class DocumentoService {
     private final DocumentoRepository repository;
-    private GarantiaRepository gatantiaRepository;
     private GenericMapper mapper;
 
     @Value("${app.upload.dir:uploads/Documentos}") // configurable en application.properties
     private String uploadDir;
 
     public DocumentoService(DocumentoRepository repository,
-            GarantiaRepository gatantiaRepository,
             GenericMapper mapper) {
         this.repository = repository;
-        this.gatantiaRepository = gatantiaRepository;
         this.mapper = mapper;
     }
 

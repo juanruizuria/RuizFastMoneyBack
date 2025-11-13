@@ -1,14 +1,7 @@
 package com.ruiz.prestamos.controller;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -23,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.ruiz.prestamos.persistence.dto.DocumentoDTO;
 import com.ruiz.prestamos.persistence.dto.GarantiaDTO;
 import com.ruiz.prestamos.persistence.entity.Documento;
 import com.ruiz.prestamos.service.DocumentoService;

@@ -8,8 +8,6 @@ import java.util.NoSuchElementException;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
-import org.springframework.web.cors.CorsUtils;
-
 import com.ruiz.prestamos.config.GenericMapper;
 import com.ruiz.prestamos.persistence.dto.PagoDTO;
 import com.ruiz.prestamos.persistence.entity.Pago;

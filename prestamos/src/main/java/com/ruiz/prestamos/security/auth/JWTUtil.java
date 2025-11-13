@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.config;
+package com.ruiz.prestamos.security.auth;
 
 import java.util.Calendar;
 import java.util.Date;

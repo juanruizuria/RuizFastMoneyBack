@@ -1,6 +1,5 @@
-package com.ruiz.prestamos.service;
+package com.ruiz.prestamos.security.service;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,12 +18,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.ruiz.prestamos.config.GenericMapper;
-import com.ruiz.prestamos.persistence.dto.RolDTO;
-import com.ruiz.prestamos.persistence.dto.UsuarioDTO;
-import com.ruiz.prestamos.persistence.entity.Permiso;
-import com.ruiz.prestamos.persistence.entity.Rol;
-import com.ruiz.prestamos.persistence.entity.Usuario;
-import com.ruiz.prestamos.persistence.repository.UserRepository;
+import com.ruiz.prestamos.security.persistence.dto.RolDTO;
+import com.ruiz.prestamos.security.persistence.dto.UsuarioDTO;
+import com.ruiz.prestamos.security.persistence.entity.Rol;
+import com.ruiz.prestamos.security.persistence.entity.Usuario;
+import com.ruiz.prestamos.security.persistence.repository.UserRepository;
 import com.ruiz.prestamos.util.ApiResponse;
 
 @Service

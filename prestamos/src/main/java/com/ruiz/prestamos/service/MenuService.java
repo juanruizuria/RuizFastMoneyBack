@@ -9,9 +9,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.ruiz.prestamos.persistence.dto.MenuDTO;
-import com.ruiz.prestamos.persistence.entity.Permiso;
-import com.ruiz.prestamos.persistence.entity.Usuario;
-import com.ruiz.prestamos.persistence.repository.UserRepository;
+import com.ruiz.prestamos.security.persistence.entity.Permiso;
+import com.ruiz.prestamos.security.persistence.entity.Usuario;
+import com.ruiz.prestamos.security.persistence.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
 

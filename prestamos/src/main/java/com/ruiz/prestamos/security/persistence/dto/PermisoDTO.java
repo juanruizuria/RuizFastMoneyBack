@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.persistence.dto;
+package com.ruiz.prestamos.security.persistence.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

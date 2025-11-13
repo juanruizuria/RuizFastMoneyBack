@@ -1,4 +1,4 @@
-package com.ruiz.prestamos.persistence.repository;
+package com.ruiz.prestamos.security.persistence.repository;
 
 import java.util.Optional;
 
@@ -8,7 +8,7 @@ import org.springframework.data.repository.ListCrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.ruiz.prestamos.persistence.entity.Permiso;
+import com.ruiz.prestamos.security.persistence.entity.Permiso;
 
 @Repository
 public interface PermisoRepository extends ListCrudRepository<Permiso, Integer> {

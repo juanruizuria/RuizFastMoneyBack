@@ -1,10 +1,10 @@
-package com.ruiz.prestamos.persistence.repository;
+package com.ruiz.prestamos.security.persistence.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.repository.ListCrudRepository;
 
-import com.ruiz.prestamos.persistence.entity.Usuario;
+import com.ruiz.prestamos.security.persistence.entity.Usuario;
 
 public interface UserRepository extends ListCrudRepository<Usuario, Integer> {
     Optional<Usuario> findByUsuario(String usuario);

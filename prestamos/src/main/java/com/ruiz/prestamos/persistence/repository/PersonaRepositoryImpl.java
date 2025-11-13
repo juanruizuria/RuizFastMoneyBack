@@ -4,10 +4,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import org.springframework.stereotype.Repository;
-
 import com.ruiz.prestamos.persistence.entity.Persona;
 import com.ruiz.prestamos.persistence.interfaces.PersonaRepositoryCustom;
-
 import java.sql.Date;
 import java.util.List;
 

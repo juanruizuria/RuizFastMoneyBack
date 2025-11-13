@@ -1,13 +1,13 @@
-package com.ruiz.prestamos.service;
+package com.ruiz.prestamos.security.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ruiz.prestamos.config.GenericMapper;
-import com.ruiz.prestamos.persistence.dto.RolDTO;
-import com.ruiz.prestamos.persistence.entity.Permiso;
-import com.ruiz.prestamos.persistence.entity.Rol;
-import com.ruiz.prestamos.persistence.repository.RolRepository;
+import com.ruiz.prestamos.security.persistence.dto.RolDTO;
+import com.ruiz.prestamos.security.persistence.entity.Permiso;
+import com.ruiz.prestamos.security.persistence.entity.Rol;
+import com.ruiz.prestamos.security.persistence.repository.RolRepository;
 import com.ruiz.prestamos.util.ApiResponse;
 
 import java.util.Collections;
